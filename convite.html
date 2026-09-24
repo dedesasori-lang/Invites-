@@ -21,6 +21,25 @@
     --ink:#26291f;
     --ink-soft:#4a4a3e;
   }
+  [data-theme="dark"]{
+    --cream:#1c2018;
+    --cream-light:#22271d;
+    --white:#f6f2e7;
+    --ink:#ece5d3;
+    --ink-soft:#c9c3ae;
+    --leaf:#a9c6a0;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --cream:#1c2018;
+      --cream-light:#22271d;
+      --white:#f6f2e7;
+      --ink:#ece5d3;
+      --ink-soft:#c9c3ae;
+      --leaf:#a9c6a0;
+    }
+  }
+
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
@@ -593,10 +612,6 @@
           <p class="detail-value" style="font-size:19px;">Joana Gonçalves António</p>
           <p class="detail-sub">João Paulo</p>
         </div>
-        <div>
-          <p class="detail-label">CONVITE DESTINADO A</p>
-          <p class="detail-value" id="guest-name-main" style="font-size:24px;">Convidado(a)</p>
-        </div>
       </div>
     </div>
   </section>
@@ -807,10 +822,7 @@
     const params = new URLSearchParams(window.location.search);
     const guest = params.get('convidado');
     if(guest){
-      const guestName = decodeURIComponent(guest);
-      document.getElementById('guest-line').textContent = 'Convite destinado a: ' + guestName;
-      const guestNameMain = document.getElementById('guest-name-main');
-      if(guestNameMain) guestNameMain.textContent = guestName;
+      document.getElementById('guest-line').textContent = 'Convite destinado a: ' + decodeURIComponent(guest);
     }
   }catch(e){}
 
